@@ -6,7 +6,7 @@
 
 ### 欢迎界面
 
-![WelcomeMenu](pictrues\WelcomeMenu.png)
+![WelcomeMenu](pictrues/WelcomeMenu.png)
 
 ### 主菜单
 
