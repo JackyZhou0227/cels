@@ -10,39 +10,39 @@
 
 ### 主菜单
 
-![MainMenu](pictrues\MainMenu.png)
+![MainMenu](pictrues/MainMenu.png)
 
 选择想要进入的功能
 
 ### 1.浏览基库
 
-![BrowserMenu](pictrues\BrowserMenu.png)
+![BrowserMenu](pictrues/BrowserMenu.png)
 
 #### 1.1 浏览单词
 
-![LetterGroup](pictrues\LetterGroup.png)
+![LetterGroup](pictrues/LetterGroup.png)
 
 单词根据首字母分组，显示各组数量，输入想看的字母，会得到该首字母所有单词
 
-![words](pictrues\Words1.png)
+![words](pictrues/Words1.png)
 
-![Words2](pictrues\Words2.png)
+![Words2](pictrues/Words2.png)
 
 #### 1.2 浏览词汇
 
 词汇vocabulary经过分页会分页显示，每页15个词汇
 
-![ChosePage](pictrues\ChosePage.png)
+![ChosePage](pictrues/ChosePage.png)
 
 选择想要查看的页码，可以显示词汇和页面信息
 
-![Vocabularies](pictrues\Vocabularies.png)
+![Vocabularies](pictrues/Vocabularies.png)
 
 ### 2.做游戏学习单词
 
 功能菜单
 
-![GameMenu](pictrues\GameMenu.png)
+![GameMenu](pictrues/GameMenu.png)
 
 #### 2.1 英译中
 
@@ -54,25 +54,25 @@
 
 按e或q退出
 
-![En2CnNew](pictrues\En2CnNew.png)
+![En2CnNew](pictrues/En2CnNew.png)
 
 下图接上图，可以回到上次的断点
 
 如果一题不答，则输出吐槽内容
 
-![En2CnHis](pictrues\En2CnHis.png)
+![En2CnHis](pictrues/En2CnHis.png)
 
 #### 2.2 中译英
 
 中译英与英译中功能相同
 
-![Cn2En](pictrues\Cn2En.png)
+![Cn2En](pictrues/Cn2En.png)
 
 ### 3.测试自己的水平
 
 测试菜单
 
-![TestMenu](pictrues\TestMenu.png)
+![TestMenu](pictrues/TestMenu.png)
 
 #### 3.1 测试功能
 
@@ -80,25 +80,25 @@
 
 测试途中也可以退出，测试记录会被保存
 
-![Testing](D:\Desktop\CELS-Summary\pictrues\Testing.png)
+![Testing](pictrues/Testing.png)
 
 #### 3.2 测试记录功能
 
 查看测试记录，按照测试时间降序排列
 
-![TestRecord](pictrues\TestRecord.png)
+![TestRecord](pictrues/TestRecord.png)
 
 ### 4.生词本
 
 生词本菜单
 
-![NoteMenu](pictrues\NoteMenu.png)
+![NoteMenu](pictrues/NoteMenu.png)
 
 #### 4.1练习生词
 
 可看到生词本中有多少生词，选择指定数量的生词进行练习
 
-![PracticeNote](pictrues\PracticeNote.png)
+![PracticeNote](pictrues/PracticeNote.png)
 
 #### 4.2查看生词本
 
@@ -106,13 +106,13 @@
 
 在练习生词功能中，同一生词答对3次，则会从生词本中移除
 
-![ViewNotes](pictrues\ViewNotes.png)
+![ViewNotes](pictrues/ViewNotes.png)
 
 ### 5.退出
 
 所有子目录按0都会返回上一级目录，在主菜单按0则程序结束
 
-![Exit](pictrues\Exit.png)
+![Exit](pictrues/Exit.png)
 
 ## 二、知识点&经验整理
 
@@ -122,7 +122,7 @@
 
 各层职责应当清晰，每一层只能调取自己下面层级的方法
 
-![Architecture1](pictrues\Architecture1.png)![Architecture2](pictrues\Architecture2.png)
+![Architecture1](pictrues/Architecture1.png)![Architecture2](pictrues/Architecture2.png)
 
 ### 2.文件IO知识点
 
