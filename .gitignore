@@ -9,6 +9,9 @@ target/
 *.iml
 .idea/
 
+# Ignore Visual Studio Code files
+.vscode/
+
 # eclipse
 .project
 .settings/
