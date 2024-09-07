@@ -15,27 +15,30 @@ public interface INoteService {
 
 
     /**
-     * TODO 从错题本文件获取生词Note类的List集合
+     * 从错题本文件获取生词Note类的List集合
+     *
      * @return List<Note> 生词集合
      * @throws NoNoteException 抛出异常
      */
-    List<Note> getNote () throws NoNoteException;
+    List<Note> getNote() throws NoNoteException;
 
     /**
-     * TODO 保存错题至错题本文件
+     * 保存错题至错题本文件
+     *
      * @param en 英文
      * @param cn 中文解释
      * @throws NoNoteException 抛出异常
      */
-    void saveNote(String en,String cn) throws NoNoteException;
+    void saveNote(String en, String cn) throws NoNoteException;
 
     /**
-     * TODO 移除答对次数>=3的错题
+     * 移除答对次数>=3的错题
      */
     void clearNote();
 
     /**
-     * TODO 更新错题答对次数
+     * 更新错题答对次数
+     *
      * @param note 要更新的生词对象
      * @throws NoNoteException 抛出异常
      */

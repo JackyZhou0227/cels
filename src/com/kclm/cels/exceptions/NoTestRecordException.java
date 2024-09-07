@@ -1,6 +1,7 @@
 package com.kclm.cels.exceptions;
 
-public class NoTestRecordException extends Exception{
+public class NoTestRecordException extends Exception {
+
     public NoTestRecordException() {
         super();
     }

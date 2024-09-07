@@ -1,6 +1,7 @@
 package com.kclm.cels.exceptions;
 
-public class NoNoteException extends Exception{
+public class NoNoteException extends Exception {
+
     public NoNoteException() {
         super();
     }

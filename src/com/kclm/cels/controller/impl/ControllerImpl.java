@@ -43,13 +43,13 @@ public class ControllerImpl implements Controller {
         int choice = -1;
 
         //循环
-        while(!exit) {
+        while (!exit) {
 
             view.mainMenu();
             //提示用户输入
             choice = InputUtil.getInt("请选择>"); //InputUtil是你要封装的一个获取用户输入的工具类
             //判断
-            switch(choice) {
+            switch (choice) {
                 case 1:
                     //业务1 浏览单词和词汇
                     Browser();
@@ -58,24 +58,22 @@ public class ControllerImpl implements Controller {
                     //业务2 游戏
                     try {
                         Game();
-                    }catch (NoHistoryException e1){
-                        e1.printStackTrace();
-                    }catch(NoNoteException e2){
-                        e2.printStackTrace();
-                }
+                    } catch (NoHistoryException | NoNoteException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 3:
                     //业务3 做测试&查看测试记录
                     try {
                         Test();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
                 case 4:
                     try {
                         note();
-                    }catch (NoNoteException e){
+                    } catch (NoNoteException e) {
                         e.printStackTrace();
                     }
 
@@ -97,12 +95,12 @@ public class ControllerImpl implements Controller {
 
         boolean rtnTop = false; //是否返回上一级
         int choice = -1;
-        while(!rtnTop) {
+        while (!rtnTop) {
             //提示用户输入
             view.showBrowserMenu();
             choice = InputUtil.getInt("请选择具体的功能>");
             //
-            switch(choice) {
+            switch (choice) {
 
                 //按字母浏览单词word
                 case 1:
@@ -119,9 +117,9 @@ public class ControllerImpl implements Controller {
                     Set<Word> words = firstMap.get(c);
                     int count = 0;
                     for (Word word : words) {
-                        count ++;
-                        String cn = String.join(",",word.getCn());
-                        System.out.println(count + ". " + word.getEn() +" => 解释：" + "[" + cn + "]");
+                        count++;
+                        String cn = String.join(",", word.getCn());
+                        System.out.println(count + ". " + word.getEn() + " => 解释：" + "[" + cn + "]");
                     }
                     break;
 
@@ -129,26 +127,26 @@ public class ControllerImpl implements Controller {
                 case 2:
 
                     PageBean page = browserService.getPageVocabularies();
-                    page.setStyle("每页【"+page.getPageSize()+"】行 ※ 共计【"+page.getPages()+"】页 ※ 词汇量总数: 【"
-                            +page.getTotal() + "】.   返回上一级:0");
+                    page.setStyle("每页【" + page.getPageSize() + "】行 ※ 共计【" + page.getPages() + "】页 ※ 词汇量总数: 【"
+                            + page.getTotal() + "】.   返回上一级:0");
                     System.out.println(page.getStyle());
 
-                        boolean continueBrowsing = true;
-                        while (continueBrowsing){
-                            int pageNum = getPageNum(page.getPages());
-                            if (pageNum == 0){
-                                continueBrowsing = false;
-                                break;
-                            }
-                            page.setCurrent(pageNum);
-                            page.setStyle("当前页【"+page.getCurrent()+"】 ※ 共计【"+page.getPages()+"】页");
-                            page.getPageData(pageNum).forEach((word) -> {
-
-                                String cn = String.join(",", word.getCn());
-                                System.out.println(word.getEn() + " => 解释：" + "[ " + cn + "]");
-                            });
-                            System.out.println(page.getStyle());
+                    boolean continueBrowsing = true;
+                    while (continueBrowsing) {
+                        int pageNum = getPageNum(page.getPages());
+                        if (pageNum == 0) {
+                            continueBrowsing = false;
+                            break;
                         }
+                        page.setCurrent(pageNum);
+                        page.setStyle("当前页【" + page.getCurrent() + "】 ※ 共计【" + page.getPages() + "】页");
+                        page.getPageData(pageNum).forEach((word) -> {
+
+                            String cn = String.join(",", word.getCn());
+                            System.out.println(word.getEn() + " => 解释：" + "[ " + cn + "]");
+                        });
+                        System.out.println(page.getStyle());
+                    }
                     break;
 
                 //返回上一级
@@ -164,9 +162,9 @@ public class ControllerImpl implements Controller {
     }
 
     //获取正确的页码
-    private int getPageNum(int max){
-        int pageNum = InputUtil.getInt("返回上一级:0 请输入页码>【1~"+ max +"】>");
-        if (pageNum < 0 || pageNum > max){
+    private int getPageNum(int max) {
+        int pageNum = InputUtil.getInt("返回上一级:0 请输入页码>【1~" + max + "】>");
+        if (pageNum < 0 || pageNum > max) {
             System.out.println("输入的页码不正确");
             return getPageNum(max);
         }
@@ -179,18 +177,18 @@ public class ControllerImpl implements Controller {
         boolean rtnTop = false; //是否返回上一级
         int choice = -1;
 
-        while(!rtnTop) {
+        while (!rtnTop) {
 
             //提示用户输入
             view.showGameSubMenu();
             choice = InputUtil.getInt("请选择具体的功能>");
             //
-            switch(choice) {
+            switch (choice) {
                 case 1:
 
                     char c = InputUtil.getLetter(" ※ 是否要从上次继续? Y or N >");
                     boolean isNew = true;
-                    if (c == 'Y'){
+                    if (c == 'Y') {
                         isNew = false;
                     }
                     Map<String, String> map = gameService.en2cn(isNew);
@@ -203,20 +201,20 @@ public class ControllerImpl implements Controller {
                         String answer = InputUtil.getString("【退出:e或者q】    ※〖" + key + "〗的中文是：");
                         String[] rAnswers = map.get(key).split(",");
                         boolean isRight = judgeAnswer(answer, rAnswers);
-                        if (answer.equals("e") || answer.equals("q")){
+                        if (answer.equals("e") || answer.equals("q")) {
                             summary(total, rightNum);
                             gameService.saveGameHistory(tempMap, true);
                             break;
-                        }else if(isRight){
+                        } else if (isRight) {
                             System.out.println("√ 回答正确, 完整解释是：【" + map.get(key) + "】");
-                            rightNum ++;
-                            total ++;
+                            rightNum++;
+                            total++;
                             tempMap.remove(key);
-                        }else if (!isRight){
+                        } else if (!isRight) {
                             System.out.println("〤 回答错误, 完整解释是：【" + map.get(key) + "】");
-                            total ++;
+                            total++;
                             tempMap.remove(key);
-                            noteService.saveNote(key,map.get(key));
+                            noteService.saveNote(key, map.get(key));
                         }
                     }
                     break;
@@ -225,7 +223,7 @@ public class ControllerImpl implements Controller {
 
                     c = InputUtil.getLetter(" ※ 是否要从上次继续? Y or N >");
                     isNew = true;
-                    if (c == 'Y'){
+                    if (c == 'Y') {
                         isNew = false;
                     }
                     Map<String, String> map2 = gameService.cn2en(isNew);
@@ -233,23 +231,23 @@ public class ControllerImpl implements Controller {
                     keys = map2.keySet();
                     total = 0;
                     rightNum = 0;
-                    for(String key : keys) {
+                    for (String key : keys) {
 
                         String answer = InputUtil.getString("【退出:e或者q】    ※〖" + key + "〗的英文是：");
-                        if (answer.equals("e") || answer.equals("q")){
+                        if (answer.equals("e") || answer.equals("q")) {
                             summary(total, rightNum);
                             gameService.saveGameHistory(tempMap2, false);
                             break;
-                        }else if(answer.equals(map2.get(key)) ){
+                        } else if (answer.equals(map2.get(key))) {
                             System.out.println("√ 回答正确, 完整解释是：【" + map2.get(key) + "】");
-                            rightNum ++;
-                            total ++;
+                            rightNum++;
+                            total++;
                             tempMap2.remove(key);
-                        }else{
+                        } else {
                             System.out.println("〤 回答错误, 完整解释是：【" + map2.get(key) + "】");
-                            total ++;
+                            total++;
                             tempMap2.remove(key);
-                            noteService.saveNote(map2.get(key),key);
+                            noteService.saveNote(map2.get(key), key);
                         }
                     }
                     break;
@@ -267,9 +265,9 @@ public class ControllerImpl implements Controller {
 
     //答题总结
     private void summary(int total, int rightNum) {
-        if(total == 0){
-                System.out.println("大哥，好歹答一题吧");
-        }else {
+        if (total == 0) {
+            System.out.println("大哥，好歹答一题吧");
+        } else {
             double accuracy = (double) rightNum / total * 100;
             String formattedAccuracy = String.format("%.1f%%", accuracy);
             System.out.println("本次共答" + total + "题，正确题数:" + rightNum + "，正确率: " + formattedAccuracy);
@@ -281,30 +279,30 @@ public class ControllerImpl implements Controller {
     private void Test() throws NoTestRecordException, NoNoteException {
         boolean rtnTop = false; //是否返回上一级
         int choice = -1;
-        while(!rtnTop) {
+        while (!rtnTop) {
             //提示用户输入
             view.showTestingSubMenu();
             choice = InputUtil.getInt("请选择>");
             //
-            switch(choice) {
+            switch (choice) {
                 case 1:
                     int qNum = getQuestionNum();
-                    System.out.println("本次测试共"+qNum+"题");
+                    System.out.println("本次测试共" + qNum + "题");
                     List<BaseTerm> baseTerms = testingService.getTestingData(qNum);
-                    Map<String,String> map = new HashMap<>();
+                    Map<String, String> map = new HashMap<>();
                     LocalDateTime startTime = LocalDateTime.now();
                     for (BaseTerm baseTerm : baseTerms) {
                         String key = baseTerm.getEn();
                         String value = "";
                         for (String s : baseTerm.getCn()) {
-                            value = value  + s + ",";
+                            value = value + s + ",";
                         }
                         int lastIndex = value.lastIndexOf(",");
                         if (lastIndex != -1) {
                             value = value.substring(0, lastIndex);
                         }
                         value = value.toString().trim();
-                        map.put(key,value);
+                        map.put(key, value);
                     }
                     Set<String> keys = map.keySet();
 
@@ -317,10 +315,10 @@ public class ControllerImpl implements Controller {
                         String answer = InputUtil.getString("【退出:e或者q】    ※〖" + key + "〗的中文是：");
                         String[] rAnswers = map.get(key).split(",");
                         boolean isRight = judgeAnswer(answer, rAnswers);
-                        if (answer.equals("e") || answer.equals("q")){
-                            if(total == 0){
+                        if (answer.equals("e") || answer.equals("q")) {
+                            if (total == 0) {
                                 System.out.println("大哥，好歹答一题吧");
-                            }else {
+                            } else {
                                 LocalDateTime endTime = LocalDateTime.now();
                                 Duration duration = Duration.between(startTime, endTime);
                                 Long totalTime = duration.getSeconds();
@@ -337,18 +335,18 @@ public class ControllerImpl implements Controller {
                                 testingService.saveTestRecord(record);
                             }
                             break;
-                        }else if(isRight){
+                        } else if (isRight) {
                             System.out.println("√ 回答正确, 完整解释是：【" + map.get(key) + "】");
-                            rightNum ++;
-                            total ++;
-                            TestData data = new TestData(total,key,map.get(key), true);
+                            rightNum++;
+                            total++;
+                            TestData data = new TestData(total, key, map.get(key), true);
                             dataList.add(data);
-                        }else if (!isRight){
+                        } else if (!isRight) {
                             System.out.println("〤 回答错误, 完整解释是：【" + map.get(key) + "】");
-                            total ++;
-                            TestData data = new TestData(total,key,map.get(key), false);
+                            total++;
+                            TestData data = new TestData(total, key, map.get(key), false);
                             dataList.add(data);
-                            noteService.saveNote(key,map.get(key));
+                            noteService.saveNote(key, map.get(key));
                         }
 
                     }
@@ -363,7 +361,7 @@ public class ControllerImpl implements Controller {
                     record.setTime(LocalDateTime.now());
                     record.setDoNum(total);
                     record.setRightNum(rightNum);
-                    record.setWrongNum(total-rightNum);
+                    record.setWrongNum(total - rightNum);
                     record.setDataList(dataList);
                     testingService.saveTestRecord(record);
                     break;
@@ -384,9 +382,9 @@ public class ControllerImpl implements Controller {
         }
     }
 
-    private int getQuestionNum(){
+    private int getQuestionNum() {
         int qNum = InputUtil.getInt("请输入要测试的题目数量[5 ~ 100]>");
-        if (qNum<5||qNum>100){
+        if (qNum < 5 || qNum > 100) {
             System.out.println("测试题数量在5-100之间");
             qNum = getQuestionNum();
         }
@@ -396,17 +394,17 @@ public class ControllerImpl implements Controller {
     private void note() throws NoNoteException {
         boolean rtnTop = false; //是否返回上一级
         int choice = -1;
-        while(!rtnTop) {
+        while (!rtnTop) {
             //提示用户输入
             view.showNoteMenu();
             choice = InputUtil.getInt("请选择具体的功能>");
             //
-            switch(choice) {
+            switch (choice) {
 
                 //练习生词
                 case 1:
                     List<Note> notes = noteService.getNote();
-                    if (notes == null || notes.size() == 0){
+                    if (notes == null || notes.size() == 0) {
                         System.out.println("无生词可练习");
                         break;
                     }
@@ -415,36 +413,36 @@ public class ControllerImpl implements Controller {
 
                     int total = 0;
 
-                    for (int i = 0;i<noteNum;i++){
+                    for (int i = 0; i < noteNum; i++) {
                         Note note = notes.get(i);
                         String answer = InputUtil.getString("【退出:e或者q】    ※〖" + note.getEn() + "〗的中文是：");
                         boolean isRight = false;
                         String[] rAnswers = note.getCn().split(",");
                         for (String rAnswer : rAnswers) {
-                            if (rAnswer.equals(answer)){
+                            if (rAnswer.equals(answer)) {
                                 isRight = true;
                                 break;
                             }
                         }
-                        if (answer.equals("e") || answer.equals("q")){
-                            if(total == 0){
+                        if (answer.equals("e") || answer.equals("q")) {
+                            if (total == 0) {
                                 System.out.println("大哥，好歹答一题吧");
-                            }else {
+                            } else {
                                 System.out.println("答题结束");
                                 noteService.clearNote();
                             }
                             break;
 
-                        }else if(isRight){
+                        } else if (isRight) {
                             System.out.println("√ 回答正确, 完整解释是：【" + note.getCn() + "】");
-                            note.setRightNum(note.getRightNum()+1);
+                            note.setRightNum(note.getRightNum() + 1);
                             noteService.updateNote(note);
                             noteService.clearNote();
-                            total ++;
-                        }else if (!isRight){
+                            total++;
+                        } else if (!isRight) {
                             System.out.println("〤 回答错误, 完整解释是：【" + note.getCn() + "】");
                             noteService.clearNote();
-                            total ++;
+                            total++;
                         }
                     }
 
@@ -456,12 +454,12 @@ public class ControllerImpl implements Controller {
                     noteService.clearNote();
                     List<Note> notes2 = noteService.getNote();
                     int i = 1;
-                    if (notes2!=null){
+                    if (notes2 != null) {
                         for (Note note : notes2) {
-                            System.out.println(i +". " + note.getEn() + " : " + note.getCn()+" 答对次数:" + note.getRightNum());
+                            System.out.println(i + ". " + note.getEn() + " : " + note.getCn() + " 答对次数:" + note.getRightNum());
                             i++;
                         }
-                    }else {
+                    } else {
                         System.out.println("生词本没有记录");
                     }
 
@@ -480,9 +478,9 @@ public class ControllerImpl implements Controller {
     }
 
     //获取用户输入的生词数量
-    private int getNoteNum(int max){
-        int noteNum = InputUtil.getInt("共【"+ max +"】个生词，请输入本轮要复习的数量:");
-        if (noteNum < 0 || noteNum > max){
+    private int getNoteNum(int max) {
+        int noteNum = InputUtil.getInt("共【" + max + "】个生词，请输入本轮要复习的数量:");
+        if (noteNum < 0 || noteNum > max) {
             System.out.println("输入的数量不正确");
             return getNoteNum(max);
         }
@@ -491,10 +489,10 @@ public class ControllerImpl implements Controller {
 
 
     //判断答案是否正确
-    private boolean judgeAnswer(String answer, String[] rAnswers){
+    private boolean judgeAnswer(String answer, String[] rAnswers) {
         boolean isRight = false;
         for (String rAnswer : rAnswers) {
-            if (rAnswer.equals(answer)){
+            if (rAnswer.equals(answer)) {
                 isRight = true;
                 break;
             }

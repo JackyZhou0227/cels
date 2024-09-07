@@ -8,5 +8,6 @@ import java.util.List;
 public interface INoteDao {
 
     List<Note> readNote(String fileName) throws NoNoteException;
+
     void writeNote(List<Note> notes, String fileName);
 }

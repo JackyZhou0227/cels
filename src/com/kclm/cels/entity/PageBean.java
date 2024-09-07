@@ -14,11 +14,9 @@ public class PageBean {
     private int pages;//总页数
     private int total;//总记录数
 
-
-
     private String style;
 
-    public PageBean(Set<Vocabulary> originalData, int pageSize){
+    public PageBean(Set<Vocabulary> originalData, int pageSize) {
 
         this.dataList = new ArrayList<>(originalData);
         this.pageSize = pageSize;
@@ -32,7 +30,8 @@ public class PageBean {
         }
 
     }
-    public List<Vocabulary> getPageData(int pageNum){
+
+    public List<Vocabulary> getPageData(int pageNum) {
         current = pageNum;
         int startIndex = (pageNum - 1) * pageSize;
         int endIndex = Math.min(startIndex + pageSize, dataList.size());

@@ -15,7 +15,7 @@ public class TestRecord implements Serializable {
 
     private List<TestData> dataList;
 
-    public void printRecord(){
+    public void printRecord() {
         System.out.println("-------------------------------------------------------------------");
         System.out.println("测试时间：" + this.time);
         System.out.println("测试时长：" + this.totalTime + "秒");
@@ -24,7 +24,7 @@ public class TestRecord implements Serializable {
         System.out.println("正确个数：" + this.rightNum);
         System.out.println("错误个数：" + this.wrongNum);
         for (TestData testData : this.dataList) {
-            System.out.println(testData.getId()+". "+testData.getEn()+" [" + testData.getCn()+"] "+testData.getSymbol());
+            System.out.println(testData.getId() + ". " + testData.getEn() + " [" + testData.getCn() + "] " + testData.getSymbol());
         }
         System.out.println("-------------------------------------------------------------------");
     }

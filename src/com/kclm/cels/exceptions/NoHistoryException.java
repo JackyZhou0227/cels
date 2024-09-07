@@ -1,6 +1,6 @@
 package com.kclm.cels.exceptions;
 
-public class NoHistoryException extends Exception{
+public class NoHistoryException extends Exception {
 
     public NoHistoryException() {
         super();

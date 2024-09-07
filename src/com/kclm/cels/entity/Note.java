@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Note implements Serializable {
 
-
     private String en;
     private String cn;
     private int rightNum;

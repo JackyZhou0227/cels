@@ -1,18 +1,12 @@
 package com.kclm.cels.view.impl;
 
-import com.kclm.cels.entity.Word;
 import com.kclm.cels.view.IView;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.WeakHashMap;
 
 public class ViewImpl implements IView {
 
     //欢迎页面
     @Override
-    public void welcome(){
+    public void welcome() {
         System.out.println("--------------------------------- ---------------------------------");
         System.out.println("                           欢迎使用【CELS】                          ");
         System.out.println("                  Computer English Learning Software               ");
@@ -24,7 +18,7 @@ public class ViewImpl implements IView {
 
     //主菜单
     @Override
-    public void mainMenu(){
+    public void mainMenu() {
         System.out.println("-------------------------------------------------------------------");
         System.out.println("  主菜单  ");
         System.out.println("# 1.\t浏览基库【单词与词汇】");
@@ -38,7 +32,7 @@ public class ViewImpl implements IView {
 
     //浏览基库子菜单
     @Override
-    public void showBrowserMenu(){
+    public void showBrowserMenu() {
         System.out.println("-------------------------------------------------------------------");
         System.out.println(" ->1.浏览单词");
         System.out.println(" ->2.浏览词汇");
@@ -48,7 +42,7 @@ public class ViewImpl implements IView {
 
     //游戏子菜单
     @Override
-    public void showGameSubMenu(){
+    public void showGameSubMenu() {
         System.out.println("-------------------------------------------------------------------");
         System.out.println(" ->1.提示英文，回答中文");
         System.out.println(" ->2.提示中文，回答英文");
@@ -58,7 +52,7 @@ public class ViewImpl implements IView {
 
     //测试子菜单
     @Override
-    public void showTestingSubMenu(){
+    public void showTestingSubMenu() {
         System.out.println("-------------------------------------------------------------------");
         System.out.println(" ->1.开始测试");
         System.out.println(" ->2.我的测试记录");

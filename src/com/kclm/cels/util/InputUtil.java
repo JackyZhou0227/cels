@@ -2,7 +2,7 @@ package com.kclm.cels.util;
 
 import java.util.Scanner;
 
-/*******************************
+/***
  * toolkit class
  */
 public class InputUtil {
@@ -28,7 +28,6 @@ public class InputUtil {
         }
     }
 
-
     /**********************
      * 获取用户输入的一个字母，统一转换为大写
      * @param prompt 提示信息
@@ -36,7 +35,6 @@ public class InputUtil {
      */
     public static char getLetter(String prompt) {
         System.out.print(prompt);
-
         try {
             String input = scanner.nextLine(); // 读取一行输入
             if (input.length() != 1 || Character.isDigit(input.charAt(0))) {
@@ -58,15 +56,15 @@ public class InputUtil {
     public static String getString(String prompt) {
         System.out.print(prompt);
         String input = scanner.nextLine();
-        if (input == null || input.equals("")){
+        if (input == null || input.equals("")) {
             System.out.println("输入的是空白字符");
             return getString(prompt);
         }
         return input; // 读取一行输入
-
     }
+
     public static void release() {
-        if(scanner != null) {
+        if (scanner != null) {
             scanner.close();
         }
     }

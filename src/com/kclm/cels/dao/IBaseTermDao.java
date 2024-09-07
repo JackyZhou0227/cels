@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public interface IBaseTermDao {
+
     String WORD_FILE = "datas/dic/w.dic";
 
     String VOCABULARY_FILE = "datas/dic/v.dic";
@@ -15,10 +16,9 @@ public interface IBaseTermDao {
 
     Set<Vocabulary> getAllVocabularies();
 
-    void writeToFile(Map<String,String> map, String fileName);
+    void writeToFile(Map<String, String> map, String fileName);
 
-    Map<String,String> readFromFile(String fileName);
-
+    Map<String, String> readFromFile(String fileName);
 
 
 }

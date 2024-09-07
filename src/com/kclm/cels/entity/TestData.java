@@ -3,6 +3,7 @@ package com.kclm.cels.entity;
 import java.io.Serializable;
 
 public class TestData implements Serializable {
+
     private int id;
     private String en;
     private String cn;
@@ -14,14 +15,14 @@ public class TestData implements Serializable {
         this.en = en;
         this.cn = cn;
         this.isRight = isRight;
-        if (isRight){
+        if (isRight) {
             this.symbol = '√';
-        }else if (!isRight){
+        } else if (!isRight) {
             this.symbol = '〤';
         }
     }
-    public TestData(){
 
+    public TestData() {
     }
 
 

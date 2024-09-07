@@ -12,15 +12,16 @@ import java.util.*;
 public class NoteServiceImpl implements INoteService {
 
     private INoteDao noteDao = new NoteDaoImpl();
+
     @Override
     public List<Note> getNote() throws NoNoteException {
 
         File t = new File(NOTE_DIR);
-        if(!t.exists()){
+        if (!t.exists()) {
             throw new NoNoteException("生词本目录不存在");
         }
-        File tr = new File(NOTE_DIR,NOTE_FILE);
-        if(!tr.exists()){
+        File tr = new File(NOTE_DIR, NOTE_FILE);
+        if (!tr.exists()) {
             throw new NoNoteException("生词本文件不存在");
         }
 
@@ -30,31 +31,30 @@ public class NoteServiceImpl implements INoteService {
     @Override
     public void saveNote(String en, String cn) throws NoNoteException {
         List<Note> notes = null;
-        File file = new File(NOTE_DIR,NOTE_FILE);
+        File file = new File(NOTE_DIR, NOTE_FILE);
         try {
             notes = getNote();
             if (notes == null) {
                 notes = new ArrayList<>();
             }
-        }catch (NoNoteException e){
+        } catch (NoNoteException e) {
             System.out.println(e.getMessage());
             notes = new ArrayList<>();
         }
         boolean isExist = false;
         for (Note n : notes) {
-            if (n.getEn().equals(en)){
+            if (n.getEn().equals(en)) {
                 isExist = true;
             }
         }
-        if (!isExist){
+        if (!isExist) {
             Note note = new Note();
             note.setEn(en);
             note.setCn(cn);
             notes.add(note);
         }
-        noteDao.writeNote(notes,file.getAbsolutePath());
+        noteDao.writeNote(notes, file.getAbsolutePath());
     }
-
 
     @Override
     public void clearNote() {
@@ -88,20 +88,20 @@ public class NoteServiceImpl implements INoteService {
 
     @Override
     public void updateNote(Note note) throws NoNoteException {
-        String fileName = NOTE_DIR+"/"+NOTE_FILE;
+        String fileName = NOTE_DIR + "/" + NOTE_FILE;
         List<Note> notes = getNote();
         try {
             for (Note note1 : notes) {
-                if (note1.getEn().equals(note.getEn())){
+                if (note1.getEn().equals(note.getEn())) {
                     notes.remove(note1);
                     notes.add(note);
                 }
             }
-        }catch (Exception e){
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        noteDao.writeNote(notes,fileName);
+        noteDao.writeNote(notes, fileName);
     }
 
 
